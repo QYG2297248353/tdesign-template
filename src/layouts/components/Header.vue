@@ -23,16 +23,13 @@
           <!-- 全局通知 -->
           <notice />
 
-          <t-tooltip placement="bottom" :content="t('layout.header.code')">
-            <t-button theme="default" shape="square" variant="text" @click="navToGitHub">
-              <t-icon name="logo-github" />
+          <!-- 全屏 -->
+          <t-tooltip placement="bottom" :content="t('layout.header.fullscreen')">
+            <t-button theme="default" shape="square" variant="text" @click="toggleFullscreen">
+              <t-icon name="fullscreen" />
             </t-button>
           </t-tooltip>
-          <t-tooltip placement="bottom" :content="t('layout.header.help')">
-            <t-button theme="default" shape="square" variant="text" @click="navToHelper">
-              <t-icon name="help-circle" />
-            </t-button>
-          </t-tooltip>
+          <!-- 语言切换 -->
           <t-dropdown trigger="click">
             <t-button theme="default" shape="square" variant="text">
               <translate-icon />
@@ -47,11 +44,24 @@
               ></t-dropdown-menu
             >
           </t-dropdown>
+          <!-- 帮助 -->
+          <t-tooltip placement="bottom" :content="t('layout.header.help')">
+            <t-button theme="default" shape="square" variant="text" @click="navToHelper">
+              <t-icon name="help-circle" />
+            </t-button>
+          </t-tooltip>
+          <!-- 配置 -->
+          <t-tooltip placement="bottom" :content="t('layout.header.setting')">
+            <t-button theme="default" shape="square" variant="text" @click="toggleSettingPanel">
+              <setting-icon />
+            </t-button>
+          </t-tooltip>
+          <!-- 用户 -->
           <t-dropdown :min-column-width="120" trigger="click">
             <template #dropdown>
               <t-dropdown-menu>
-                <t-dropdown-item class="operations-dropdown-container-item" @click="handleNav('/user/index')">
-                  <user-circle-icon />{{ t('layout.header.user') }}
+                <t-dropdown-item class="operations-dropdown-container-item" @click="handleToHome">
+                  <home-icon />{{ t('layout.header.toHome') }}
                 </t-dropdown-item>
                 <t-dropdown-item class="operations-dropdown-container-item" @click="handleLogout">
                   <poweroff-icon />{{ t('layout.header.signOut') }}
@@ -66,11 +76,6 @@
               <template #suffix><chevron-down-icon /></template>
             </t-button>
           </t-dropdown>
-          <t-tooltip placement="bottom" :content="t('layout.header.setting')">
-            <t-button theme="default" shape="square" variant="text" @click="toggleSettingPanel">
-              <setting-icon />
-            </t-button>
-          </t-tooltip>
         </div>
       </template>
     </t-head-menu>
@@ -78,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronDownIcon, PoweroffIcon, SettingIcon, TranslateIcon, UserCircleIcon } from 'tdesign-icons-vue-next';
+import { ChevronDownIcon, HomeIcon, PoweroffIcon, SettingIcon, TranslateIcon } from 'tdesign-icons-vue-next';
 import type { PropType } from 'vue';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
@@ -152,6 +157,15 @@ const menuCls = computed(() => {
 });
 const menuTheme = computed(() => theme as ModeType);
 
+// 切换全屏
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+};
+
 // 切换语言
 const { changeLocale } = useLocale();
 const changeLang = (lang: string) => {
@@ -164,8 +178,10 @@ const changeCollapsed = () => {
   });
 };
 
-const handleNav = (url: string) => {
-  router.push(url);
+const handleToHome = () => {
+  router.push({
+    path: '/home',
+  });
 };
 
 const handleLogout = () => {
@@ -173,10 +189,6 @@ const handleLogout = () => {
     path: '/login',
     query: { redirect: encodeURIComponent(router.currentRoute.value.fullPath) },
   });
-};
-
-const navToGitHub = () => {
-  window.open('https://github.com/tencent/tdesign-vue-next-starter');
 };
 
 const navToHelper = () => {

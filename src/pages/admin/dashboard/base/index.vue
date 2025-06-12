@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- 顶部 card  -->
-    <top-panel class="row-container" />
-  </div>
+  <div>后台页面</div>
 </template>
 
 <script lang="ts">
@@ -11,9 +8,7 @@ export default {
 };
 </script>
 
-<script setup lang="ts">
-import TopPanel from './components/TopPanel.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .row-container:not(:last-child) {

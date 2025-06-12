@@ -95,12 +95,6 @@
           <t-switch v-model="formData.menuAutoCollapsed"></t-switch>
         </t-form-item>
       </t-form>
-      <div class="setting-info">
-        <p>{{ t('layout.setting.tips') }}</p>
-        <t-button theme="primary" variant="text" @click="handleCopy">
-          {{ t('layout.setting.copy.title') }}
-        </t-button>
-      </div>
     </div>
   </t-drawer>
 </template>

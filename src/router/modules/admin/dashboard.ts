@@ -1,7 +1,7 @@
 import { DashboardIcon } from 'tdesign-icons-vue-next';
 import { shallowRef } from 'vue';
 
-import Layout from '@/layouts/index.vue';
+import Layout from '@/layouts/admin.vue';
 
 export default [
   {
@@ -21,7 +21,7 @@ export default [
       {
         path: 'base',
         name: 'DashboardBase',
-        component: () => import('@/pages/dashboard/base/index.vue'),
+        component: () => import('@/pages/admin/dashboard/base/index.vue'),
         meta: {
           title: {
             zh_CN: '概览仪表盘',

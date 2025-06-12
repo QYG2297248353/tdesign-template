@@ -39,9 +39,9 @@
         </div>
       </div>
     </template>
-    <t-badge :count="unreadMsg.length" :offset="[4, 4]">
+    <t-badge dot :count="unreadMsg.length" :offset="[4, 4]">
       <t-button theme="default" shape="square" variant="text">
-        <t-icon name="mail" />
+        <t-icon name="notification" />
       </t-button>
     </t-badge>
   </t-popup>
@@ -49,13 +49,12 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
+import { MessagePlugin } from 'tdesign-vue-next';
 
 import { t } from '@/locales';
 import { useNotificationStore } from '@/store';
 import type { NotificationItem } from '@/types/interface';
 
-const router = useRouter();
 const store = useNotificationStore();
 const { msgData, unreadMsg } = storeToRefs(store);
 
@@ -76,7 +75,7 @@ const setRead = (type: string, item?: NotificationItem) => {
 };
 
 const goDetail = () => {
-  router.push('/detail/secondary');
+  MessagePlugin.info('敬请期待');
 };
 </script>
 

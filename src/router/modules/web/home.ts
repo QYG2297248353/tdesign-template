@@ -1,18 +1,18 @@
 import { DashboardIcon } from 'tdesign-icons-vue-next';
 import { shallowRef } from 'vue';
 
-import Layout from '@/layouts/index.vue';
+import Layout from '@/layouts/web.vue';
 
 export default [
   {
     path: '/home',
     component: Layout,
     redirect: '/home/base',
-    name: 'dashboard',
+    name: 'home',
     meta: {
       title: {
-        zh_CN: '仪表盘',
-        en_US: 'Dashboard',
+        zh_CN: '关于',
+        en_US: 'About',
       },
       icon: shallowRef(DashboardIcon),
       orderNo: 0,
@@ -20,12 +20,12 @@ export default [
     children: [
       {
         path: 'base',
-        name: 'DashboardBase',
-        component: () => import('@/pages/dashboard/base/index.vue'),
+        name: 'HomeBase',
+        component: () => import('@/pages/web/home/base/index.vue'),
         meta: {
           title: {
-            zh_CN: '概览仪表盘',
-            en_US: 'Overview',
+            zh_CN: '首页',
+            en_US: 'Home',
           },
         },
       },
