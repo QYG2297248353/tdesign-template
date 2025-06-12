@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefix + '-footer'">Copyright © 2021-{{ new Date().getFullYear() }} Tencent. All Rights Reserved</div>
+  <div :class="prefix + '-footer'">Copyright © 2023-{{ new Date().getFullYear() }} 新疆萌森软件开发工作室</div>
 </template>
 
 <script setup lang="ts">

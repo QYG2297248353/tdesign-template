@@ -3,27 +3,23 @@ import { RouteRecordRaw } from 'vue-router';
 
 import { RouteItem } from '@/api/model/permissionModel';
 import { getMenuList } from '@/api/permission';
-import router, { fixedRouterList, homepageRouterList } from '@/router';
+import router, { adminRouterList } from '@/router';
 import { store } from '@/store';
 import { transformObjectToRoute } from '@/utils/route';
 
 export const usePermissionStore = defineStore('permission', {
   state: () => ({
     whiteListRouters: ['/login'],
-    routers: [],
-    removeRoutes: [],
-    asyncRoutes: [],
+    routers: [] as RouteRecordRaw[],
+    removeRoutes: [] as RouteRecordRaw[],
+    asyncRoutes: [] as RouteRecordRaw[],
   }),
   actions: {
     async initRoutes() {
       const accessedRouters = this.asyncRoutes;
 
       // 在菜单展示全部路由
-      this.routers = [...homepageRouterList, ...accessedRouters, ...fixedRouterList];
-      // 在菜单只展示动态路由和首页
-      // this.routers = [...homepageRouterList, ...accessedRouters];
-      // 在菜单只展示动态路由
-      // this.routers = [...accessedRouters];
+      this.routers = [...adminRouterList, ...accessedRouters];
     },
     async buildAsyncRoutes() {
       try {
@@ -39,7 +35,7 @@ export const usePermissionStore = defineStore('permission', {
     },
     async restoreRoutes() {
       // 不需要在此额外调用initRoutes更新侧边导肮内容，在登录后asyncRoutes为空会调用
-      this.asyncRoutes.forEach((item: RouteRecordRaw) => {
+      this.asyncRoutes.forEach((item: any) => {
         if (item.name) {
           router.removeRoute(item.name);
         }

@@ -5,9 +5,9 @@ import Layout from '@/layouts/index.vue';
 
 export default [
   {
-    path: '/dashboard',
+    path: '/home',
     component: Layout,
-    redirect: '/dashboard/base',
+    redirect: '/home/base',
     name: 'dashboard',
     meta: {
       title: {

@@ -1,29 +1,20 @@
-import uniq from 'lodash/uniq';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-// 导入homepage相关固定路由
-const homepageModules = import.meta.glob('./modules/**/homepage.ts', { eager: true });
+// 导入后台路由
+const adminpageModules = import.meta.glob('./modules/admin/**/*.ts', { eager: true });
 
-// 导入modules非homepage相关固定路由
-const fixedModules = import.meta.glob('./modules/**/!(homepage).ts', { eager: true });
+// 导入前台路由
+const webModules = import.meta.glob('./modules/web/**/*.ts', { eager: true });
 
-// 其他固定路由
-const defaultRouterList: Array<RouteRecordRaw> = [
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/pages/login/index.vue'),
-  },
-  {
-    path: '/',
-    redirect: '/dashboard/base',
-  },
-];
+// 其他基础路由
+const defaultModules = import.meta.glob('./modules/base/**/*.ts', { eager: true });
+
 // 存放固定路由
-export const homepageRouterList: Array<RouteRecordRaw> = mapModuleRouterList(homepageModules);
-export const fixedRouterList: Array<RouteRecordRaw> = mapModuleRouterList(fixedModules);
+export const adminRouterList: Array<RouteRecordRaw> = mapModuleRouterList(adminpageModules);
+export const webRouterList: Array<RouteRecordRaw> = mapModuleRouterList(webModules);
+export const defaultRouterList: Array<RouteRecordRaw> = mapModuleRouterList(defaultModules);
 
-export const allRoutes = [...homepageRouterList, ...fixedRouterList, ...defaultRouterList];
+export const allRoutes = [...adminRouterList, ...webRouterList, ...defaultRouterList];
 
 // 固定路由模块转换为路由
 export function mapModuleRouterList(modules: Record<string, unknown>): Array<RouteRecordRaw> {
@@ -36,29 +27,6 @@ export function mapModuleRouterList(modules: Record<string, unknown>): Array<Rou
   });
   return routerList;
 }
-
-/**
- *
- * @deprecated 未使用
- */
-export const getRoutesExpanded = () => {
-  const expandedRoutes: Array<string> = [];
-
-  fixedRouterList.forEach((item) => {
-    if (item.meta && item.meta.expanded) {
-      expandedRoutes.push(item.path);
-    }
-    if (item.children && item.children.length > 0) {
-      item.children
-        .filter((child) => child.meta && child.meta.expanded)
-        .forEach((child: RouteRecordRaw) => {
-          expandedRoutes.push(item.path);
-          expandedRoutes.push(`${item.path}/${child.path}`);
-        });
-    }
-  });
-  return uniq(expandedRoutes);
-};
 
 export const getActive = (maxLevel = 3): string => {
   // 非组件内调用必须通过Router实例获取当前路由

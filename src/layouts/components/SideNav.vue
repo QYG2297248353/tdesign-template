@@ -15,9 +15,6 @@
         </span>
       </template>
       <menu-content :nav-data="menu" />
-      <template #operations>
-        <span :class="versionCls"> {{ !collapsed ? 'TDesign Starter' : '' }} {{ pgk.version }} </span>
-      </template>
     </t-menu>
     <div :class="`${prefix}-side-nav-placeholder${collapsed ? '-hidden' : ''}`"></div>
   </div>
@@ -37,7 +34,6 @@ import { getActive } from '@/router';
 import { useSettingStore } from '@/store';
 import type { MenuRoute, ModeType } from '@/types/interface';
 
-import pgk from '../../../package.json';
 import MenuContent from './MenuContent.vue';
 
 const MIN_POINT = 992 - 1;
@@ -45,7 +41,7 @@ const MIN_POINT = 992 - 1;
 const { menu, showLogo, isFixed, layout, theme, isCompact } = defineProps({
   menu: {
     type: Array as PropType<MenuRoute[]>,
-    default: () => [],
+    default: (): MenuRoute[] => [],
   },
   showLogo: {
     type: Boolean as PropType<boolean>,
@@ -110,14 +106,6 @@ const sideNavCls = computed(() => {
 const logoCls = computed(() => {
   return [
     `${prefix}-side-nav-logo-${collapsed.value ? 't' : 'tdesign'}-logo`,
-    {
-      [`${prefix}-side-nav-dark`]: sideMode.value,
-    },
-  ];
-});
-const versionCls = computed(() => {
-  return [
-    `version-container`,
     {
       [`${prefix}-side-nav-dark`]: sideMode.value,
     },
