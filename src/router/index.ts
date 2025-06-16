@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+import Layout from '@/layouts/web.vue';
 import { MenuRoute } from '@/types/interface';
 
 // 导入后台路由
@@ -16,7 +17,22 @@ export const adminRouterList: Array<MenuRoute> = mapModuleRouterList(adminpageMo
 export const webRouterList: Array<MenuRoute> = mapModuleRouterList(webModules);
 export const defaultRouterList: Array<MenuRoute> = mapModuleRouterList(defaultModules);
 
-export const allRoutes = [...adminRouterList, ...webRouterList, ...defaultRouterList];
+// 前台路由
+const homeRouter = {
+  path: '/',
+  name: 'Web',
+  component: Layout,
+  redirect: '/home',
+  meta: {
+    title: {
+      zh_CN: '前台',
+      en_US: 'Web',
+    },
+  },
+  children: [...webRouterList],
+};
+
+export const allRoutes = [...adminRouterList, homeRouter, ...defaultRouterList];
 
 // 固定路由模块转换为路由
 export function mapModuleRouterList(modules: Record<string, unknown>): Array<MenuRoute> {

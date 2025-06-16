@@ -6,6 +6,10 @@ export default [
   },
   {
     path: '/',
-    redirect: '/dashboard/base',
+    redirect: '/home',
+  },
+  {
+    path: '/admin',
+    redirect: '/admin/dashboard',
   },
 ];

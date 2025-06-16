@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import { RouteItem } from '@/api/model/permissionModel';
 import { getMenuList } from '@/api/permission';
-import router, { adminRouterList } from '@/router';
+import router, { adminRouterList, webRouterList } from '@/router';
 import { store } from '@/store';
 import { MenuRoute } from '@/types/interface';
 import { transformObjectToRoute } from '@/utils/route';
@@ -11,6 +11,7 @@ export const usePermissionStore = defineStore('permission', {
   state: () => ({
     whiteListRouters: ['/login'],
     routers: [] as MenuRoute[],
+    webRouters: [] as MenuRoute[],
     removeRoutes: [] as MenuRoute[],
     asyncRoutes: [] as MenuRoute[],
   }),
@@ -20,6 +21,7 @@ export const usePermissionStore = defineStore('permission', {
 
       // 在菜单展示全部路由
       this.routers = [...adminRouterList, ...accessedRouters];
+      this.webRouters = [...webRouterList];
     },
     async buildAsyncRoutes(): Promise<MenuRoute[]> {
       try {

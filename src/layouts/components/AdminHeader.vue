@@ -201,10 +201,6 @@ const navToHelper = () => {
     top: 0;
     z-index: 1001;
 
-    :deep(.t-head-menu__inner) {
-      padding-right: var(--td-comp-margin-xl);
-    }
-
     &-side {
       left: 232px;
       right: 0;

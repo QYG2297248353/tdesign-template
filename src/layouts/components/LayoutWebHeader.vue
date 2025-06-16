@@ -1,12 +1,11 @@
 <template>
   <l-header
-    v-if="settingStore.showHeader"
-    :show-logo="settingStore.showHeaderLogo"
+    :show-logo="true"
     :theme="settingStore.displayMode"
-    :layout="settingStore.layout"
-    :is-fixed="settingStore.isHeaderFixed"
+    layout="light"
+    :is-fixed="true"
     :menu="headerMenu"
-    :is-compact="settingStore.isSidebarCompact"
+    :is-compact="true"
   />
 </template>
 
@@ -17,11 +16,11 @@ import { computed } from 'vue';
 import { usePermissionStore, useSettingStore } from '@/store';
 import { MenuRoute } from '@/types/interface';
 
-import LHeader from './AdminHeader.vue';
+import LHeader from './WebHeader.vue';
 
 const permissionStore = usePermissionStore();
 const settingStore = useSettingStore();
-const { routers: menuRouters } = storeToRefs(permissionStore);
+const { webRouters: menuRouters } = storeToRefs(permissionStore);
 const headerMenu = computed<MenuRoute[]>(() => {
   if (settingStore.layout === 'mix') {
     if (settingStore.splitMenu) {

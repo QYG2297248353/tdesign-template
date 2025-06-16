@@ -1,10 +1,10 @@
 <template>
-  <div>后台页面</div>
+  <div>前台页面</div>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'Dashboard',
+  name: 'Home',
 };
 </script>
 

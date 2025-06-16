@@ -6,6 +6,7 @@ export default {
     lang: 'Switch Language',
     help: 'Document',
     toHome: 'Home',
+    toAdmin: 'Admin',
     user: 'Profile',
     signOut: 'Sign Out',
     setting: 'Setting',
