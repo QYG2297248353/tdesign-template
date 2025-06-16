@@ -15,10 +15,6 @@
             <thumbnail class="browser-icon" url="https://tdesign.gtimg.com/starter/result-page/chorme.png" />
             <div>Chrome</div>
           </div>
-          <div>
-            <thumbnail class="browser-icon" url="https://tdesign.gtimg.com/starter/result-page/qq-browser.png" />
-            <div>QQ Browser</div>
-          </div>
         </div>
       </div>
     </div>
