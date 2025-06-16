@@ -27,6 +27,7 @@ export default [
             zh_CN: '首页',
             en_US: 'Home',
           },
+          showInSidebar: true,
         },
       },
     ],

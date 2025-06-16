@@ -2,6 +2,7 @@ import type { TabValue } from 'tdesign-vue-next';
 import { LocationQueryRaw, RouteRecordName } from 'vue-router';
 
 export interface RouteMeta {
+  showInSidebar?: boolean;
   title?: string | Record<string, string>;
   icon?: string;
   expanded?: boolean;
@@ -25,7 +26,7 @@ export interface MenuRoute {
         render: () => void;
       };
   redirect?: string;
-  children: MenuRoute[];
+  children?: MenuRoute[];
   meta: RouteMeta;
 }
 

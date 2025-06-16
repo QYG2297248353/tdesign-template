@@ -21,29 +21,37 @@
           <search v-if="layout !== 'side'" :layout="layout" />
 
           <!-- 全局通知 -->
-          <notice />
+          <t-tooltip placement="bottom" :content="t('layout.header.notice')">
+            <notice />
+          </t-tooltip>
 
           <!-- 全屏 -->
-          <t-tooltip placement="bottom" :content="t('layout.header.fullscreen')">
-            <t-button theme="default" shape="square" variant="text" @click="toggleFullscreen">
-              <t-icon name="fullscreen" />
+          <t-tooltip
+            placement="bottom"
+            :content="isFullscreen ? t('layout.header.exitFullscreen') : t('layout.header.fullscreen')"
+          >
+            <t-button theme="default" shape="square" variant="text" @click="toggleFullScreen">
+              <t-icon v-show="!isFullscreen" name="fullscreen-2" />
+              <t-icon v-show="isFullscreen" name="fullscreen-exit" />
             </t-button>
           </t-tooltip>
           <!-- 语言切换 -->
-          <t-dropdown trigger="click">
-            <t-button theme="default" shape="square" variant="text">
-              <translate-icon />
-            </t-button>
-            <t-dropdown-menu>
-              <t-dropdown-item
-                v-for="(lang, index) in langList"
-                :key="index"
-                :value="lang.value"
-                @click="(options) => changeLang(options.value as string)"
-                >{{ lang.content }}</t-dropdown-item
-              ></t-dropdown-menu
-            >
-          </t-dropdown>
+          <t-tooltip placement="bottom" :content="t('layout.header.lang')">
+            <t-dropdown trigger="click">
+              <t-button theme="default" shape="square" variant="text">
+                <translate-icon />
+              </t-button>
+              <t-dropdown-menu>
+                <t-dropdown-item
+                  v-for="(lang, index) in langList"
+                  :key="index"
+                  :value="lang.value"
+                  @click="(options) => changeLang(options.value as string)"
+                  >{{ lang.content }}</t-dropdown-item
+                ></t-dropdown-menu
+              >
+            </t-dropdown>
+          </t-tooltip>
           <!-- 帮助 -->
           <t-tooltip placement="bottom" :content="t('layout.header.help')">
             <t-button theme="default" shape="square" variant="text" @click="navToHelper">
@@ -60,7 +68,7 @@
           <t-dropdown :min-column-width="120" trigger="click">
             <template #dropdown>
               <t-dropdown-menu>
-                <t-dropdown-item class="operations-dropdown-container-item" @click="handleToHome">
+                <t-dropdown-item class="operations-dropdown-container-item" @click="handleNav('/home')">
                   <home-icon />{{ t('layout.header.toHome') }}
                 </t-dropdown-item>
                 <t-dropdown-item class="operations-dropdown-container-item" @click="handleLogout">
@@ -83,6 +91,7 @@
 </template>
 
 <script setup lang="ts">
+import { useFullscreen } from '@vueuse/core';
 import { ChevronDownIcon, HomeIcon, PoweroffIcon, SettingIcon, TranslateIcon } from 'tdesign-icons-vue-next';
 import type { PropType } from 'vue';
 import { computed } from 'vue';
@@ -115,7 +124,7 @@ const { theme, layout, showLogo, menu, isFixed, isCompact } = defineProps({
   },
   menu: {
     type: Array as PropType<MenuRoute[]>,
-    default: () => [],
+    default: (): MenuRoute[] => [],
   },
   isFixed: {
     type: Boolean,
@@ -134,6 +143,7 @@ const { theme, layout, showLogo, menu, isFixed, isCompact } = defineProps({
 const router = useRouter();
 const settingStore = useSettingStore();
 const user = useUserStore();
+const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
 
 const toggleSettingPanel = () => {
   settingStore.updateConfig({
@@ -157,15 +167,6 @@ const menuCls = computed(() => {
 });
 const menuTheme = computed(() => theme as ModeType);
 
-// 切换全屏
-const toggleFullscreen = () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-};
-
 // 切换语言
 const { changeLocale } = useLocale();
 const changeLang = (lang: string) => {
@@ -178,10 +179,8 @@ const changeCollapsed = () => {
   });
 };
 
-const handleToHome = () => {
-  router.push({
-    path: '/home',
-  });
+const handleNav = (url: string) => {
+  router.push(url);
 };
 
 const handleLogout = () => {
@@ -192,7 +191,7 @@ const handleLogout = () => {
 };
 
 const navToHelper = () => {
-  window.open('http://tdesign.tencent.com/starter/docs/get-started');
+  window.open('https://blog.lifebus.top');
 };
 </script>
 <style lang="less" scoped>

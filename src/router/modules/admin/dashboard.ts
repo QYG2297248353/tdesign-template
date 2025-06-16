@@ -27,6 +27,7 @@ export default [
             zh_CN: '概览仪表盘',
             en_US: 'Overview',
           },
+          showInSidebar: true,
         },
       },
     ],

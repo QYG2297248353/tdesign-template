@@ -1,18 +1,18 @@
 import { defineStore } from 'pinia';
-import { RouteRecordRaw } from 'vue-router';
 
 import { RouteItem } from '@/api/model/permissionModel';
 import { getMenuList } from '@/api/permission';
 import router, { adminRouterList } from '@/router';
 import { store } from '@/store';
+import { MenuRoute } from '@/types/interface';
 import { transformObjectToRoute } from '@/utils/route';
 
 export const usePermissionStore = defineStore('permission', {
   state: () => ({
     whiteListRouters: ['/login'],
-    routers: [] as RouteRecordRaw[],
-    removeRoutes: [] as RouteRecordRaw[],
-    asyncRoutes: [] as RouteRecordRaw[],
+    routers: [] as MenuRoute[],
+    removeRoutes: [] as MenuRoute[],
+    asyncRoutes: [] as MenuRoute[],
   }),
   actions: {
     async initRoutes() {
@@ -21,13 +21,13 @@ export const usePermissionStore = defineStore('permission', {
       // 在菜单展示全部路由
       this.routers = [...adminRouterList, ...accessedRouters];
     },
-    async buildAsyncRoutes(): Promise<RouteRecordRaw[]> {
+    async buildAsyncRoutes(): Promise<MenuRoute[]> {
       try {
         // 发起菜单权限请求 获取菜单列表
         const asyncRoutes: Array<RouteItem> = (await getMenuList()).list;
         this.asyncRoutes = transformObjectToRoute(asyncRoutes);
         await this.initRoutes();
-        return this.asyncRoutes as RouteRecordRaw[];
+        return this.asyncRoutes;
       } catch (error) {
         console.log(error);
         throw new Error("Can't build routes");

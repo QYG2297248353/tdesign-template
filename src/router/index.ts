@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+import { MenuRoute } from '@/types/interface';
+
 // 导入后台路由
 const adminpageModules = import.meta.glob('./modules/admin/**/*.ts', { eager: true });
 
@@ -10,15 +12,15 @@ const webModules = import.meta.glob('./modules/web/**/*.ts', { eager: true });
 const defaultModules = import.meta.glob('./modules/base/**/*.ts', { eager: true });
 
 // 存放固定路由
-export const adminRouterList: Array<RouteRecordRaw> = mapModuleRouterList(adminpageModules);
-export const webRouterList: Array<RouteRecordRaw> = mapModuleRouterList(webModules);
-export const defaultRouterList: Array<RouteRecordRaw> = mapModuleRouterList(defaultModules);
+export const adminRouterList: Array<MenuRoute> = mapModuleRouterList(adminpageModules);
+export const webRouterList: Array<MenuRoute> = mapModuleRouterList(webModules);
+export const defaultRouterList: Array<MenuRoute> = mapModuleRouterList(defaultModules);
 
 export const allRoutes = [...adminRouterList, ...webRouterList, ...defaultRouterList];
 
 // 固定路由模块转换为路由
-export function mapModuleRouterList(modules: Record<string, unknown>): Array<RouteRecordRaw> {
-  const routerList: Array<RouteRecordRaw> = [];
+export function mapModuleRouterList(modules: Record<string, unknown>): Array<MenuRoute> {
+  const routerList: Array<MenuRoute> = [];
   Object.keys(modules).forEach((key) => {
     // @ts-ignore
     const mod = modules[key].default || {};
@@ -45,7 +47,7 @@ export const getActive = (maxLevel = 3): string => {
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
-  routes: allRoutes,
+  routes: allRoutes as RouteRecordRaw[],
   scrollBehavior() {
     return {
       el: '#app',

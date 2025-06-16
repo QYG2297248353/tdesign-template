@@ -1,7 +1,11 @@
 export default {
   header: {
-    code: 'Code Repository',
+    notice: 'Notification',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit Fullscreen',
+    lang: 'Switch Language',
     help: 'Document',
+    toHome: 'Home',
     user: 'Profile',
     signOut: 'Sign Out',
     setting: 'Setting',
@@ -37,18 +41,12 @@ export default {
     splitMenu: 'Split Menu（Only Mix mode）',
     fixedSidebar: 'Fixed Sidebar',
     element: {
-      title: 'Element Switch',
+      title: 'Page Config',
       showHeader: 'Show Header',
       showBreadcrumb: 'Show Breadcrumb',
       showFooter: 'Show Footer',
       useTagTabs: 'Use Tag Tabs',
       menuAutoCollapsed: 'Menu Auto Collapsed',
-    },
-    tips: 'Please copy and manually modify the configuration file: /src/config/style.ts',
-    copy: {
-      title: 'Copy',
-      success: 'copied',
-      fail: 'fail to copy',
     },
   },
 };
