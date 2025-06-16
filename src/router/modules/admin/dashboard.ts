@@ -30,6 +30,18 @@ export default [
           showInSidebar: true,
         },
       },
+      {
+        path: 'template',
+        name: 'DashboardTemplate',
+        component: () => import('@/pages/admin/dashboard/template/index.vue'),
+        meta: {
+          title: {
+            zh_CN: '模板页面',
+            en_US: 'Template',
+          },
+          showInSidebar: true,
+        },
+      },
     ],
   },
 ];

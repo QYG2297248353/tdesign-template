@@ -1,6 +1,6 @@
 <template>
   <t-layout :class="`${prefix}-layout`">
-    <t-content :class="`${prefix}-content-layout`">
+    <t-content :class="`${prefix}-content-web-layout`">
       <l-breadcrumb v-if="false" />
       <l-content />
     </t-content>
