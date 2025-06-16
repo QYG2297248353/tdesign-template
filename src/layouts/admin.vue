@@ -1,3 +1,4 @@
+<!-- 后台页面布局 -->
 <template>
   <div>
     <template v-if="setting.layout.value === 'side'">
@@ -33,8 +34,8 @@ import { useRoute } from 'vue-router';
 import { prefix } from '@/config/global';
 import { useSettingStore, useTabsRouterStore } from '@/store';
 
-import LayoutContent from './components/LayoutContent.vue';
-import LayoutHeader from './components/LayoutHeader.vue';
+import LayoutContent from './components/LayoutAdminContent.vue';
+import LayoutHeader from './components/LayoutAdminHeader.vue';
 import LayoutSideNav from './components/LayoutSideNav.vue';
 import SettingCom from './setting.vue';
 

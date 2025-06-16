@@ -62,6 +62,11 @@ export const langList = computed(() => {
 });
 
 // @ts-ignore
-export const { t } = i18n.global;
+// export const { t } = i18n.global;
+export const t = i18n.global.t as <T = string>(key: string) => T;
+
+export function safeT(key: string): string {
+  return i18n.global.t(key) as string;
+}
 
 export default i18n;

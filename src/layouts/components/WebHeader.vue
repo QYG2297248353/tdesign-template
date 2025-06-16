@@ -147,6 +147,7 @@ const menuCls = computed(() => {
       [`${prefix}-header-menu-fixed`]: isFixed,
       [`${prefix}-header-menu-fixed-side`]: layout === 'side' && isFixed,
       [`${prefix}-header-menu-fixed-side-compact`]: layout === 'side' && isFixed && isCompact,
+      [`${prefix}-web-layout-header`]: true,
     },
   ];
 });
@@ -254,6 +255,10 @@ const navToHelper = () => {
   &:hover {
     cursor: pointer;
   }
+}
+
+.@{starter-prefix}-web-layout-header {
+  padding: 0 120px;
 }
 
 .header-user-account {

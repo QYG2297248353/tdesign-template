@@ -1,3 +1,4 @@
+<!-- 系统设置布局 -->
 <template>
   <t-drawer
     v-model:visible="showSettingPanel"
@@ -99,9 +100,7 @@
   </t-drawer>
 </template>
 <script setup lang="ts">
-import { useClipboard } from '@vueuse/core';
 import type { PopupVisibleChangeContext } from 'tdesign-vue-next';
-import { MessagePlugin } from 'tdesign-vue-next';
 import { computed, onMounted, ref, watchEffect } from 'vue';
 
 import SettingAutoIcon from '@/assets/assets-setting-auto.svg';
@@ -167,20 +166,6 @@ const onPopupVisibleChange = (visible: boolean, context: PopupVisibleChangeConte
   if (!visible && context.trigger === 'document') {
     isColoPickerDisplay.value = visible;
   }
-};
-
-const handleCopy = () => {
-  const sourceText = JSON.stringify(formData.value, null, 4);
-  const { copy } = useClipboard({ source: sourceText });
-  copy()
-    .then(() => {
-      MessagePlugin.closeAll();
-      MessagePlugin.success('复制成功');
-    })
-    .catch(() => {
-      MessagePlugin.closeAll();
-      MessagePlugin.error('复制失败');
-    });
 };
 const getModeIcon = (mode: string) => {
   if (mode === 'light') {

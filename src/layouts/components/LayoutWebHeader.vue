@@ -23,13 +23,10 @@ const settingStore = useSettingStore();
 const { webRouters: menuRouters } = storeToRefs(permissionStore);
 const headerMenu = computed<MenuRoute[]>(() => {
   if (settingStore.layout === 'mix') {
-    if (settingStore.splitMenu) {
-      return menuRouters.value.map((menu) => ({
-        ...menu,
-        children: menu.children?.filter((item) => item.meta?.showInSidebar),
-      }));
-    }
-    return [] as MenuRoute[];
+    return menuRouters.value.map((menu) => ({
+      ...menu,
+      children: menu.children?.filter((item) => item.meta?.showInSidebar),
+    }));
   }
   return menuRouters.value;
 });

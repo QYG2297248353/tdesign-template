@@ -1,7 +1,8 @@
+<!-- 前台页面布局 -->
 <template>
   <t-layout key="no-side">
     <t-header><layout-header /> </t-header>
-    <t-layout :class="mainLayoutCls">
+    <t-layout>
       <layout-content />
     </t-layout>
   </t-layout>
@@ -10,24 +11,17 @@
 <script setup lang="ts">
 import '@/style/layout.less';
 
-import { computed, onMounted, watch } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { prefix } from '@/config/global';
-import { useSettingStore, useTabsRouterStore } from '@/store';
+import { useTabsRouterStore } from '@/store';
 
 import LayoutContent from './components/LayoutWebContent.vue';
 import LayoutHeader from './components/LayoutWebHeader.vue';
 
 const route = useRoute();
-const settingStore = useSettingStore();
 const tabsRouterStore = useTabsRouterStore();
-
-const mainLayoutCls = computed(() => [
-  {
-    't-layout--with-sider': settingStore.showSidebar,
-  },
-]);
 
 const appendNewRoute = () => {
   const {
