@@ -258,7 +258,7 @@ const navToHelper = () => {
 }
 
 .@{starter-prefix}-web-layout-header {
-  padding: 0 120px;
+  padding: 0 100px;
 }
 
 .header-user-account {

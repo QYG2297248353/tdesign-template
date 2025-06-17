@@ -8,6 +8,8 @@ export default {
     toHome: 'Home',
     toAdmin: 'Admin',
     user: 'Profile',
+    openSpoilers: 'Open Spoilers',
+    closeSpoilers: 'Close Spoilers',
     signOut: 'Sign Out',
     setting: 'Setting',
   },

@@ -9,6 +9,7 @@ export { store };
 export * from './modules/notification';
 export * from './modules/permission';
 export * from './modules/setting';
+export * from './modules/spoiler';
 export * from './modules/tabs-router';
 export * from './modules/user';
 

@@ -6,11 +6,11 @@ import { RouteItem } from '@/api/model/permissionModel';
 import { RouteMeta } from '@/types/interface';
 import {
   BLANK_LAYOUT,
-  EXCEPTION_COMPONENT,
   IFRAME,
   LAYOUT,
   PAGE_NOT_FOUND_ROUTE,
   PARENT_LAYOUT,
+  SERVER_ERROR,
 } from '@/utils/route/constant';
 
 // 动态从包内引入单个Icon,如果没有网络环境可以使用这种方式 但是会导致产物存在多个chunk
@@ -80,7 +80,7 @@ function dynamicImport(dynamicViewsModules: Record<string, () => Promise<Recorda
   } else {
     console.warn(`Can't find ${component} in pages folder`);
   }
-  return EXCEPTION_COMPONENT;
+  return SERVER_ERROR;
 }
 
 // 将背景对象变成路由对象

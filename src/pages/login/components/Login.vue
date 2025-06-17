@@ -84,7 +84,7 @@ const route = useRoute();
 const onSubmit = async (ctx: SubmitContext) => {
   if (ctx.validateResult === true) {
     try {
-      await userStore.login(formData.value);
+      await userStore.login();
 
       MessagePlugin.success('登录成功');
       const redirect = route.query.redirect as string;
