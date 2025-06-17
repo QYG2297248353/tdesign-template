@@ -19,3 +19,7 @@ app.use(i18n);
 app.use(directive);
 
 app.mount('#app');
+
+import { setupTauri } from './tauri';
+
+setupTauri();
