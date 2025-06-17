@@ -6,6 +6,7 @@ import { viteMockServe } from 'vite-plugin-mock';
 import svgLoader from 'vite-svg-loader';
 
 export default defineConfig({
+  clearScreen: false,
   base: process.env.VITE_BASE_URL || '/',
   plugins: [
     vue(),
@@ -37,6 +38,7 @@ export default defineConfig({
     ],
     extensions: ['.ts', '.js', '.mjs', '.json'],
   },
+  envPrefix: ['VITE_', 'TAURI_ENV_*'],
   define: {
     'process.env': {},
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
