@@ -6,9 +6,15 @@
           <logo-full class="t-logo" />
         </span>
         <div v-else class="header-operate-left">
-          <t-button theme="default" shape="square" variant="text" @click="changeCollapsed">
-            <t-icon class="collapsed-icon" name="view-list" />
-          </t-button>
+          <t-tooltip
+            placement="bottom"
+            :content="!isSidebarCompact ? t('layout.header.foldMenu') : t('layout.header.unfoldMenu')"
+          >
+            <t-button theme="default" shape="square" variant="text" @click="changeCollapsed">
+              <menu-fold-icon v-show="isSidebarCompact" name="view-list" />
+              <menu-unfold-icon v-show="!isSidebarCompact" name="view-list" />
+            </t-button>
+          </t-tooltip>
           <search :layout="layout" />
         </div>
       </template>
@@ -102,6 +108,8 @@ import {
   BrowseOffIcon,
   ChevronDownIcon,
   HomeIcon,
+  MenuFoldIcon,
+  MenuUnfoldIcon,
   PoweroffIcon,
   SettingIcon,
   TranslateIcon,
@@ -186,6 +194,10 @@ const changeLang = (lang: string) => {
   changeLocale(lang);
 };
 
+// 当前侧边栏状态
+const isSidebarCompact = computed(() => settingStore.isSidebarCompact);
+
+// 切换侧边栏
 const changeCollapsed = () => {
   settingStore.updateConfig({
     isSidebarCompact: !settingStore.isSidebarCompact,
