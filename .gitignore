@@ -19,8 +19,6 @@ typings/
 
 _site
 package
-tmp*
-temp*
 coverage
 test-report.html
 .idea/
@@ -38,3 +36,4 @@ pnpm-lock.yaml
 
 # 编辑器
 .vscode/
+.idea/
