@@ -9,9 +9,9 @@
               <div class="stat-title">{{ item.title }}</div>
               <div class="stat-value">{{ item.value }}</div>
               <div class="stat-trend">
-                <t-trend :trend="item.trend === 'up' ? 'up' : 'down'" class="trend-container">
+                <trend :type="item.trend === 'up' ? 'up' : 'down'" class="trend-container">
                   {{ item.trend === 'up' ? '+' : '-' }}{{ item.rate }}%
-                </t-trend>
+                </trend>
                 <span class="trend-text">较上周</span>
               </div>
             </div>
@@ -118,6 +118,8 @@ import dayjs from 'dayjs';
 import * as echarts from 'echarts';
 import { onMounted, reactive, ref } from 'vue';
 
+import Trend from '@/components/trend/index.vue';
+
 // 数据概览
 const statisticsData = ref([
   {
@@ -125,7 +127,7 @@ const statisticsData = ref([
     value: '¥ 126,560',
     trend: 'up',
     rate: '15.6',
-    icon: 'money-circle',
+    icon: 'money',
   },
   {
     title: '访问量',
@@ -539,7 +541,7 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .dashboard-container {
-  padding: 24px;
+  padding: 0 24px;
 }
 
 .dashboard-row {

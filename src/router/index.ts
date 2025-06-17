@@ -3,6 +3,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layouts/web.vue';
 import { MenuRoute } from '@/types/interface';
 
+import createRouteGuard from './guard';
+
 // 导入后台路由
 const adminpageModules = import.meta.glob('./modules/admin/**/*.ts', { eager: true });
 
@@ -30,6 +32,24 @@ const homeRouter = {
     },
   },
   children: [...webRouterList],
+};
+
+// 白名单路由
+export const whiteListRouters = ['/login', '/jump'];
+
+// 403 路由
+export const FORBIDDEN_ROUTE = {
+  name: 'Result403',
+};
+
+// 404 路由
+export const NOT_FOUND_ROUTE = {
+  name: 'Result404',
+};
+
+// 500 路由
+export const SERVER_ERROR_ROUTE = {
+  name: 'Result500',
 };
 
 export const allRoutes = [...adminRouterList, homeRouter, ...defaultRouterList];
@@ -72,5 +92,7 @@ const router = createRouter({
     };
   },
 });
+
+createRouteGuard(router);
 
 export default router;

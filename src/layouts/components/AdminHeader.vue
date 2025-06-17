@@ -71,6 +71,11 @@
                 <t-dropdown-item class="operations-dropdown-container-item" @click="handleNav('/home')">
                   <home-icon />{{ t('layout.header.toHome') }}
                 </t-dropdown-item>
+                <t-dropdown-item class="operations-dropdown-container-item" divider @click="toggleSpoilerMode">
+                  <browse-icon v-if="!spoilerMode" />
+                  <browse-off-icon v-else />
+                  {{ !spoilerMode ? t('layout.header.openSpoilers') : t('layout.header.closeSpoilers') }}
+                </t-dropdown-item>
                 <t-dropdown-item class="operations-dropdown-container-item" @click="handleLogout">
                   <poweroff-icon />{{ t('layout.header.signOut') }}
                 </t-dropdown-item>
@@ -92,7 +97,15 @@
 
 <script setup lang="ts">
 import { useFullscreen } from '@vueuse/core';
-import { ChevronDownIcon, HomeIcon, PoweroffIcon, SettingIcon, TranslateIcon } from 'tdesign-icons-vue-next';
+import {
+  BrowseIcon,
+  BrowseOffIcon,
+  ChevronDownIcon,
+  HomeIcon,
+  PoweroffIcon,
+  SettingIcon,
+  TranslateIcon,
+} from 'tdesign-icons-vue-next';
 import type { PropType } from 'vue';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
@@ -102,7 +115,7 @@ import { prefix } from '@/config/global';
 import { langList, t } from '@/locales';
 import { useLocale } from '@/locales/useLocale';
 import { getActive } from '@/router';
-import { useSettingStore, useUserStore } from '@/store';
+import { useSettingStore, useSpoilerStore, useUserStore } from '@/store';
 import type { MenuRoute, ModeType } from '@/types/interface';
 
 import MenuContent from './MenuContent.vue';
@@ -179,10 +192,21 @@ const changeCollapsed = () => {
   });
 };
 
+// 剧透
+const spoilerStore = useSpoilerStore();
+const spoilerMode = computed(() => {
+  return spoilerStore.spoilerMode;
+});
+const toggleSpoilerMode = () => {
+  spoilerStore.toggleSpoilerMode();
+};
+
+// 跳转
 const handleNav = (url: string) => {
   router.push(url);
 };
 
+// 退出登录
 const handleLogout = () => {
   router.push({
     path: '/login',
@@ -190,6 +214,7 @@ const handleLogout = () => {
   });
 };
 
+// 跳转帮助
 const navToHelper = () => {
   window.open('https://blog.lifebus.top');
 };

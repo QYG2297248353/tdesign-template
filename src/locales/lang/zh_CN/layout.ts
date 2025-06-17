@@ -8,6 +8,8 @@ export default {
     toHome: '前台首页',
     toAdmin: '后台管理',
     user: '个人中心',
+    openSpoilers: '开启剧透',
+    closeSpoilers: '关闭剧透',
     signOut: '退出登录',
     setting: '系统设置',
   },

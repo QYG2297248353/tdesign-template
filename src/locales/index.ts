@@ -10,7 +10,7 @@ const langModuleMap = new Map<string, Object>();
 
 export const langCode: Array<string> = [];
 
-export const localeConfigKey = 'tdesign-starter-locale';
+export const localeConfigKey = 'tdesign-template-locale';
 
 // 获取浏览器默认语言环境
 const languages = usePreferredLanguages();
@@ -60,6 +60,11 @@ export const langList = computed(() => {
 
   return list;
 });
+
+// 获取当前语言
+export const getCurrentLang = () => {
+  return i18n.global.locale.value;
+};
 
 // @ts-ignore
 // export const { t } = i18n.global;
