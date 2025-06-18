@@ -6,6 +6,16 @@ export async function setupMenu() {
   const menu = await Menu.new({
     items: [
       {
+        id: 'app',
+        text: '应用',
+        items: [
+          {
+            id: 'about',
+            text: '关于',
+          },
+        ],
+      },
+      {
         id: 'close',
         text: '关闭窗口',
         action: async () => {

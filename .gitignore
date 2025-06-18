@@ -37,3 +37,7 @@ pnpm-lock.yaml
 # 编辑器
 .vscode/
 .idea/
+
+# Tauri
+src-tauri/2
+src-tauri/target

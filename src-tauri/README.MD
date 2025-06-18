@@ -49,3 +49,38 @@
 
 - `window-state:default`：窗口状态权限，用于管理窗口的状态，如最小化、最大化、关闭等。
 - `autostart:default`：自动启动权限，用于管理应用的自动启动。
+- `fs:default`：文件系统权限，用于管理文件系统的读写权限。
+- `deep-link:default`：深链接权限，用于处理应用的深链接。
+- `clipboard-manager:allow-clear`：剪贴板权限，用于清空剪贴板内容。
+- `clipboard-manager:allow-read-image`：剪贴板权限，用于读取剪贴板中的图片。
+- `clipboard-manager:allow-read-text`：剪贴板权限，用于读取剪贴板中的文本。
+- `clipboard-manager:allow-write-html`：剪贴板权限，用于写入剪贴板中的 HTML 内容。
+- `clipboard-manager:allow-write-image`：剪贴板权限，用于写入剪贴板中的图片。
+- `clipboard-manager:allow-write-text`：剪贴板权限，用于写入剪贴板中的文本。
+
+### 插件说明
+
+### 单例 `single-instance`
+
+插件初始配置中 `src/lib.rs` 中 `tauri_plugin_single_instance::init` 函数中。
+
+```rs
+tauri::Builder::default()
+.plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+            if let Some(window) = app.get_webview_window("tdesign-template") {
+                // 如果窗口最小化了，先恢复
+                let _ = window.unminimize();
+                // 显示window窗口
+                let _ = window.show();
+                // 然后将窗口激活、置顶
+                let _ = window.set_focus();
+            }
+        }))
+```
+
+`"tdesign-template"` 为窗口标签,如果需要修改，请同时修改：
+
+- `src-tauri\tauri.conf.json[app][windows][label]`
+- `src\tauri\constant.ts[MAIN_WINDOW_ID]`
+
+同时要注意权限`src-tauri\capabilities\*.json`适配问题。
