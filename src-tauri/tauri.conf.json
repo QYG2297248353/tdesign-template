@@ -15,11 +15,13 @@
         "title": "TDesign Template",
         "width": 1200,
         "height": 800,
+        "center": true,
         "resizable": true,
         "fullscreen": false,
         "browserExtensionsEnabled": false,
         "label": "tdesign-template",
-        "windowClassname": "TDesign"
+        "windowClassname": "TDesign",
+        "dragDropEnabled": false
       }
     ],
     "security": {
@@ -35,6 +37,9 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
+    ],
+    "resources": [
+      "icons/*"
     ]
   }
 }

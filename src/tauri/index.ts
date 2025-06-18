@@ -9,4 +9,9 @@ export async function setupTauri() {
   await setupMenu();
   // 初始化托盘
   await setupTray();
+
+  // 禁用右键菜单
+  window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
 }
