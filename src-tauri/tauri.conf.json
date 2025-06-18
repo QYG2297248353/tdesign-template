@@ -12,11 +12,14 @@
   "app": {
     "windows": [
       {
-        "title": "tdesign-template",
-        "width": 800,
-        "height": 600,
+        "title": "TDesign Template",
+        "width": 1200,
+        "height": 800,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "browserExtensionsEnabled": false,
+        "label": "tdesign-template",
+        "windowClassname": "TDesign"
       }
     ],
     "security": {

@@ -1,14 +1,30 @@
 {
   "identifier": "desktop-capability",
+  "description": "桌面应用权限",
+  "local": true,
   "platforms": [
-    "macOS",
-    "windows",
-    "linux"
+    "windows"
   ],
   "windows": [
-    "main"
+    "tdesign-template",
+    "tdesign-template-*"
   ],
+  "remote": {
+    "urls": [
+      "https://*.lifebus.top",
+      "https://*.lifebus.fun"
+    ]
+  },
   "permissions": [
+    "core:window:allow-start-dragging",
+    "core:window:allow-center",
+    "core:window:allow-create",
+    "core:window:allow-close",
+    "core:window:allow-hide",
+    "core:window:allow-show",
+    "core:window:allow-destroy",
+    "core:window:allow-minimize",
+    "core:window:allow-title",
     "window-state:default",
     "autostart:default"
   ]

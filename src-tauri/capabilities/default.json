@@ -1,9 +1,10 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "enables the default permissions",
+  "description": "基础权限",
   "windows": [
-    "main"
+    "tdesign-template",
+    "tdesign-template-*"
   ],
   "permissions": [
     "core:default"
