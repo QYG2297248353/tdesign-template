@@ -3,8 +3,8 @@
   "version": "1.13.2",
   "type": "module",
   "scripts": {
-    "dev": "vite --version && vite --open --mode development --config ./config/vite.config.dev.ts",
-    "build": "vite --version && vue-tsc --noEmit && vite build --mode production --config ./config/vite.config.dev.ts",
+    "dev": "vite --version && vite --mode development --config ./config/vite.config.dev.ts",
+    "build": "vite --version && vue-tsc --noEmit && vite build --mode production --config ./config/vite.config.prod.ts",
     "preview": "vite --version && vite preview",
     "lint": "eslint --ext .vue,.js,.jsx,.ts,.tsx ./ --max-warnings 0",
     "lint:fix": "eslint --ext .vue,.js,jsx,.ts,.tsx ./ --max-warnings 0 --fix",
