@@ -258,7 +258,9 @@ const navToHelper = () => {
 }
 
 .@{starter-prefix}-web-layout-header {
-  padding: 0 100px;
+  :deep(.t-head-menu__inner) {
+    padding: 0 100px;
+  }
 }
 
 .header-user-account {
