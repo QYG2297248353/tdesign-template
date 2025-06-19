@@ -23,8 +23,13 @@ export async function setupWindows() {
       if (payload?.exit) {
         // 退出其他窗口应用
         await exitAllWindows();
-        // 退出主窗口应用
+        // 更新主窗口初始化状态
         await setStoreValue(MAIN_WINDOW_INIT, false);
+        // 等待10s
+        await new Promise((resolve) => {
+          setTimeout(resolve, 5000);
+        });
+        // 退出主应用窗口
         const main = await getWindow(MAIN_WINDOW_ID);
         await main?.destroy();
       } else {

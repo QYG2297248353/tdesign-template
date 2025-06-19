@@ -72,6 +72,7 @@
 - `store:allow-set`：存储权限，用于允许设置存储中的数据。
 - `store:allow-save`：存储权限，用于允许保存存储中的数据。
 - `store:allow-load`：存储权限，用于允许加载存储中的数据。
+- `shell:allow-open`：Shell 权限，用于允许打开外部应用。
 
 ## 插件说明
 
