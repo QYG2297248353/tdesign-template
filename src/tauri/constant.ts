@@ -12,6 +12,7 @@ export const APP_COPYRIGHT = 'Copyright © 2025 新疆萌森软件开发工作�
 // 主窗口ID 请同步修改 tauri.conf.json
 export const MAIN_WINDOW_ID = 'tdesign-template';
 export const MAIN_WINDOW_TRAY_ID = 'tdesign-template-tray';
+export const MAIN_WINDOW_INIT = 'tdesign-template-initialized';
 // 托盘功能
 export const APP_TRAY = true;
 // 最小化到托盘

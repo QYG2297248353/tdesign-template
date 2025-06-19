@@ -25,6 +25,11 @@
     "core:window:allow-destroy",
     "core:window:allow-minimize",
     "core:window:allow-title",
+    "core:webview:allow-create-webview",
+    "core:webview:allow-create-webview-window",
+    "core:webview:allow-webview-show",
+    "core:webview:allow-webview-hide",
+    "core:webview:allow-clear-all-browsing-data",
     "window-state:default",
     "autostart:default",
     "fs:default",
@@ -34,6 +39,16 @@
     "clipboard-manager:allow-read-text",
     "clipboard-manager:allow-write-html",
     "clipboard-manager:allow-write-image",
-    "clipboard-manager:allow-write-text"
+    "clipboard-manager:allow-write-text",
+    "dialog:default",
+    "dialog:allow-message",
+    "notification:default",
+    "notification:allow-request-permission",
+    "store:default",
+    "store:allow-get-store",
+    "store:allow-get",
+    "store:allow-set",
+    "store:allow-save",
+    "store:allow-load"
   ]
 }

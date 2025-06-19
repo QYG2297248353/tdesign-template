@@ -44,8 +44,13 @@
 - `core:window:allow-destroy`：允许销毁窗口权限，用于允许销毁窗口。
 - `core:window:allow-minimize`：允许最小化窗口权限，用于允许最小化窗口。
 - `core:window:allow-title`：允许设置窗口标题权限，用于允许设置窗口的标题。
+- `core:webview:allow-create-webview`: 允许创建 WebView 权限，用于允许创建 WebView 实例。
+- `core:webview:allow-create-webview-window`: 允许创建 WebView 窗口权限，用于允许创建 WebView 窗口。
+- `core:webview:allow-webview-show`: 允许显示 WebView 权限，用于允许显示 WebView 实例。
+- `core:webview:allow-webview-hide`: 允许隐藏 WebView 权限，用于允许隐藏 WebView 实例。
+- `core:webview:allow-clear-all-browsing-data`: 允许清除所有浏览器数据权限，用于允许清除 WebView 实例的所有浏览器数据。
 
-#### 插件
+#### 插件权限
 
 - `window-state:default`：窗口状态权限，用于管理窗口的状态，如最小化、最大化、关闭等。
 - `autostart:default`：自动启动权限，用于管理应用的自动启动。
@@ -57,8 +62,18 @@
 - `clipboard-manager:allow-write-html`：剪贴板权限，用于写入剪贴板中的 HTML 内容。
 - `clipboard-manager:allow-write-image`：剪贴板权限，用于写入剪贴板中的图片。
 - `clipboard-manager:allow-write-text`：剪贴板权限，用于写入剪贴板中的文本。
+- `dialog:default`：对话框权限，用于管理对话框的显示和操作。
+- `dialog:allow-message`：对话框权限，用于允许显示消息对话框。
+- `notification:default`：通知权限，用于管理通知的显示和操作。
+- `notification:allow-request-permission`：通知权限，用于允许请求通知权限。
+- `store:default`: 存储权限，用于管理存储的读写权限。
+- `store:allow-get-store`: 存储权限，用于允许获取存储中的数据。
+- `store:allow-get`：存储权限，用于允许获取存储中的数据。
+- `store:allow-set`：存储权限，用于允许设置存储中的数据。
+- `store:allow-save`：存储权限，用于允许保存存储中的数据。
+- `store:allow-load`：存储权限，用于允许加载存储中的数据。
 
-### 插件说明
+## 插件说明
 
 ### 单例 `single-instance`
 
@@ -84,3 +99,33 @@ tauri::Builder::default()
 - `src\tauri\constant.ts[MAIN_WINDOW_ID]`
 
 同时要注意权限`src-tauri\capabilities\*.json`适配问题。
+
+## 迁移支持
+
+如需其他项目接入，请迁移目录 `src/tauri` 到其他项目中。并在 `src/main.ts` 中引入插件。
+
+```ts
+import { setupTauri } from './tauri';
+
+setupTauri();
+```
+
+### 插件安装
+
+```sh
+npm run tauri add autostart
+npm run tauri add clipboard-manager
+npm run tauri add deep-link
+npm run tauri add dialog
+npm run tauri add fs
+npm run tauri add notification
+npm run tauri add upload
+npm run tauri add window-state
+npm run tauri add store
+```
+
+### 依赖安装
+
+```sh
+npm run tauri add single-instance
+```

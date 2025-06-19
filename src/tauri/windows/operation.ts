@@ -1,4 +1,3 @@
-import { Webview } from '@tauri-apps/api/webview';
 import { Window, WindowOptions } from '@tauri-apps/api/window';
 
 import { MAIN_WINDOW_ID } from '../constant';
@@ -12,6 +11,12 @@ import { MAIN_WINDOW_ID } from '../constant';
  */
 export async function createWindow(label: string, options: WindowOptions) {
   const window = new Window(label, options);
+  window.once('tauri://created', () => {
+    console.log('[Tauri][Window] 窗口创建成功');
+  });
+  window.once('tauri://error', (e) => {
+    console.log('[Tauri][Window] 窗口创建失败', e);
+  });
   return window;
 }
 
@@ -20,27 +25,8 @@ export async function createWindow(label: string, options: WindowOptions) {
  *
  * @returns 当前窗口实例
  */
-export function getCurrentWindow() {
+export function getCurrentWindow(): Window {
   return Window.getCurrent();
-}
-
-/**
- * 获取当前窗口的 Webview 实例
- *
- * @returns 当前窗口的 Webview 实例
- */
-export function getCurrentWebview() {
-  return Webview.getCurrent();
-}
-
-/**
- * 获取指定窗口的 Webview 实例
- *
- * @param label 窗口标签
- * @returns 指定窗口的 Webview 实例
- */
-export function getWindowWebview(label: string) {
-  return Webview.getByLabel(label);
 }
 
 /**
@@ -49,11 +35,8 @@ export function getWindowWebview(label: string) {
  * @param label 窗口标签
  * @returns 指定窗口实例
  */
-export async function getWindow(label: string): Promise<Window> {
+export async function getWindow(label: string): Promise<Window | null> {
   const window = await Window.getByLabel(label);
-  if (!window) {
-    throw new Error(`窗口 ${label} 不存在`);
-  }
   return window;
 }
 
@@ -62,8 +45,9 @@ export async function getWindow(label: string): Promise<Window> {
  *
  * @returns 所有窗口实例
  */
-export function getWindows() {
-  return Window.getAll();
+export async function getWindows(): Promise<Window[]> {
+  const all = await Window.getAll();
+  return all;
 }
 
 /**
@@ -145,7 +129,8 @@ export async function maximizeAllWindows() {
  */
 export async function showWindow(label: string) {
   const window = await getWindow(label);
-  if (window) {
+  const show = await window.isVisible();
+  if (window && !show) {
     window.show();
   }
 }
@@ -157,7 +142,8 @@ export async function showWindow(label: string) {
  */
 export async function hideWindow(label: string) {
   const window = await getWindow(label);
-  if (window) {
+  const show = await window.isVisible();
+  if (window && show) {
     window.hide();
   }
 }
