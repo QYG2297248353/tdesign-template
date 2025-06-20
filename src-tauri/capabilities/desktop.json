@@ -32,7 +32,6 @@
     "core:webview:allow-clear-all-browsing-data",
     "window-state:default",
     "autostart:default",
-    "fs:default",
     "deep-link:default",
     "clipboard-manager:allow-clear",
     "clipboard-manager:allow-read-image",
@@ -50,6 +49,36 @@
     "store:allow-set",
     "store:allow-save",
     "store:allow-load",
-    "shell:allow-open"
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "cmd": "",
+          "name": "binaries/ammds",
+          "sidecar": true
+        }
+      ]
+    },
+    "shell:allow-spawn",
+    "shell:allow-open",
+    "shell:allow-kill",
+    "fs:default",
+    "fs:allow-app-read-recursive",
+    "fs:allow-app-write-recursive",
+    "fs:scope-app-recursive",
+    "fs:allow-appconfig-read-recursive",
+    "fs:allow-appconfig-write-recursive",
+    "fs:scope-appconfig-recursive",
+    "fs:allow-appcache-write-recursive",
+    "fs:allow-applog-write-recursive",
+    "fs:scope-applog-recursive",
+    "fs:allow-desktop-read",
+    "fs:allow-desktop-write",
+    "fs:allow-document-read",
+    "fs:allow-download-read",
+    "fs:allow-exe-read-recursive",
+    "fs:scope-exe-recursive",
+    "process:default",
+    "process:allow-restart"
   ]
 }

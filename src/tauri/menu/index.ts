@@ -4,6 +4,7 @@ import { Menu } from '@tauri-apps/api/menu';
 import { MAIN_WINDOW_ID, MAIN_WINDOW_INIT } from '../constant';
 import { createInfoDialog } from '../plugin/dialog';
 import { sendDesktopNotification } from '../plugin/notification';
+import { runCommand } from '../plugin/shell';
 import { getStoreValue } from '../plugin/store';
 import { createWebviewWindow } from '../webview/operation';
 import { closeAllWindows, getWindow } from '../windows/operation';
@@ -49,6 +50,13 @@ export async function flushMenu() {
         id: 'app',
         text: '应用',
         items: [
+          {
+            id: 'runBack',
+            text: '启动后台服务',
+            action: async () => {
+              await runCommand('binaries/ammds');
+            },
+          },
           {
             id: 'aboutTauri',
             text: '关于 Tauri',

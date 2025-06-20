@@ -5,6 +5,9 @@ import baseConfig from './vite.config.base';
 export default mergeConfig(
   {
     mode: 'development',
+    watch: {
+      ignored: ['**/src-tauri/**'],
+    },
     server: {
       open: false,
       host: '127.0.0.1',

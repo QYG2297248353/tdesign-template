@@ -1,7 +1,8 @@
 import { TauriEvent } from '@tauri-apps/api/event';
 
 import { MAIN_WINDOW_ID, MAIN_WINDOW_INIT } from '../constant';
-import { getStoreValue, saveStore, setStoreValue } from '../plugin/store';
+import { exitCleanApp } from '../plugin/app/init';
+import { getStoreValue } from '../plugin/store';
 import { closeAllWindows, exitAllWindows, getWindow } from './operation';
 
 export async function setupWindows() {
@@ -24,12 +25,7 @@ export async function setupWindows() {
         // 退出其他窗口应用
         await exitAllWindows();
         // 更新主窗口初始化状态
-        await setStoreValue(MAIN_WINDOW_INIT, false);
-        await saveStore();
-        // 等待5s
-        await new Promise((resolve) => {
-          setTimeout(resolve, 5000);
-        });
+        await exitCleanApp();
         // 退出主应用窗口
         const main = await getWindow(MAIN_WINDOW_ID);
         await main?.destroy();

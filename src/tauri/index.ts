@@ -1,7 +1,6 @@
-import { MAIN_WINDOW_INIT } from './constant';
 import { isTauriEnv } from './core';
 import { setupMenu } from './menu';
-import { saveStore, setStoreValue } from './plugin/store';
+import { initialCheck, launchApp } from './plugin/app/init';
 import { setupTray } from './tray';
 import { setupWebview } from './webview';
 import { setupWindows } from './windows';
@@ -19,6 +18,8 @@ function disableRightClickMenu() {
 
 export async function setupTauri() {
   if (isTauriEnv()) {
+    // 初始检查
+    await initialCheck();
     // 初始化主窗口
     await setupWindows();
     // 初始化主窗口视图
@@ -27,8 +28,8 @@ export async function setupTauri() {
     await setupMenu();
     // 初始化主窗口托盘
     await setupTray();
-    await setStoreValue(MAIN_WINDOW_INIT, true);
-    await saveStore();
+    // 启动应用
+    await launchApp();
 
     // 全部禁用右键菜单
     disableRightClickMenu();

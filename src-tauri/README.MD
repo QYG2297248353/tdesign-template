@@ -54,7 +54,6 @@
 
 - `window-state:default`：窗口状态权限，用于管理窗口的状态，如最小化、最大化、关闭等。
 - `autostart:default`：自动启动权限，用于管理应用的自动启动。
-- `fs:default`：文件系统权限，用于管理文件系统的读写权限。
 - `deep-link:default`：深链接权限，用于处理应用的深链接。
 - `clipboard-manager:allow-clear`：剪贴板权限，用于清空剪贴板内容。
 - `clipboard-manager:allow-read-image`：剪贴板权限，用于读取剪贴板中的图片。
@@ -72,7 +71,28 @@
 - `store:allow-set`：存储权限，用于允许设置存储中的数据。
 - `store:allow-save`：存储权限，用于允许保存存储中的数据。
 - `store:allow-load`：存储权限，用于允许加载存储中的数据。
+- `shell:allow-execute`：Shell 权限，用于允许执行外部命令。
+- `shell:allow-spawn`：Shell 权限，用于允许创建新进程。
 - `shell:allow-open`：Shell 权限，用于允许打开外部应用。
+- `shell:allow-kill`：Shell 权限，用于允许杀死进程。
+- `fs:default`：文件系统权限，用于管理文件系统的读写权限。
+- `fs:allow-app-read-recursive`: 应用程序读取权限，用于允许读取应用程序的文件系统。
+- `fs:allow-app-write-recursive`: 应用程序写入权限，用于允许写入应用程序的文件系统。
+- `fs:scope-app-recursive`: 应用程序范围权限，用于限制应用程序的文件系统访问范围。
+- `fs:allow-appconfig-read-recursive`: 应用程序配置读取权限，用于允许读取应用程序的配置文件系统。
+- `fs:allow-appconfig-write-recursive`: 应用程序配置写入权限，用于允许写入应用程序的配置文件系统。
+- `fs:scope-appconfig-recursive`: 应用程序配置范围权限，用于限制应用程序的配置文件系统访问范围。
+- `fs:allow-appcache-write-recursive`: 应用程序缓存写入权限，用于允许写入应用程序的缓存文件系统。
+- `fs:allow-applog-write-recursive`: 应用程序日志写入权限，用于允许写入应用程序的日志文件系统。
+- `fs:scope-applog-recursive`: 应用程序日志范围权限，用于限制应用程序的日志文件系统访问范围。
+- `fs:allow-desktop-read`: 桌面读取权限，用于允许读取桌面的文件系统。
+- `fs:allow-desktop-write`: 桌面写入权限，用于允许写入桌面的文件系统。
+- `fs:allow-document-read`: 文档读取权限，用于允许读取文档的文件系统。
+- `fs:allow-download-read`: 下载读取权限，用于允许读取下载的文件系统。
+- `fs:allow-exe-read-recursive`: 可执行文件读取权限，用于允许读取可执行文件的文件系统。
+- `fs:scope-exe-recursive`: 可执行文件范围权限，用于限制可执行文件的文件系统访问范围。
+- `process:default`: 进程权限，用于管理进程的权限。
+- `process:allow-restart`: 进程重启权限，用于允许重启进程。
 
 ## 插件说明
 
@@ -123,6 +143,7 @@ npm run tauri add notification
 npm run tauri add upload
 npm run tauri add window-state
 npm run tauri add store
+npm run tauri add process
 ```
 
 ### 依赖安装

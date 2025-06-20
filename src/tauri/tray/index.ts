@@ -3,6 +3,7 @@ import { Menu } from '@tauri-apps/api/menu';
 import { TrayIcon, TrayIconEvent } from '@tauri-apps/api/tray';
 
 import { MAIN_WINDOW_ID, MAIN_WINDOW_INIT, MAIN_WINDOW_TRAY_ID } from '../constant';
+import { exitApp, relaunchApp } from '../plugin/process';
 import { getStoreValue } from '../plugin/store';
 import { exitAllWindows, getWindow, showWindow } from '../windows/operation';
 
@@ -16,6 +17,25 @@ export async function flushMenu() {
           console.log('[Tauri][系统托盘] 打开主界面');
           await showWindow(MAIN_WINDOW_ID);
         },
+      },
+      {
+        text: '高级',
+        items: [
+          {
+            text: '重启应用',
+            action: async () => {
+              console.log('[Tauri][系统托盘] 重启应用');
+              await relaunchApp();
+            },
+          },
+          {
+            text: '退出应用',
+            action: async () => {
+              console.log('[Tauri][系统托盘] 退出应用');
+              await exitApp();
+            },
+          },
+        ],
       },
       {
         text: '退出',
