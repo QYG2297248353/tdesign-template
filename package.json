@@ -29,7 +29,7 @@
     "@tauri-apps/plugin-upload": "^2.2.1",
     "@tauri-apps/plugin-window-state": "^2.2.2",
     "@vueuse/core": "^12.3.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "dayjs": "^1.11.13",
     "dompurify": "^3.2.6",
     "echarts": "5.4.3",
