@@ -1,10 +1,11 @@
+import { invoke } from '@tauri-apps/api/tauri';
+
 import { isTauriEnv } from './core';
 import { setupMenu } from './menu';
 import { initialCheck, launchApp } from './plugin/app/init';
 import { setupTray } from './tray';
 import { setupWebview } from './webview';
 import { setupWindows } from './windows';
-
 /**
  * 禁用右键菜单
  *
@@ -13,6 +14,19 @@ import { setupWindows } from './windows';
 function disableRightClickMenu() {
   window.addEventListener('contextmenu', (e) => {
     e.preventDefault();
+  });
+}
+
+/**
+ * 打开控制台
+ *
+ * @description 打开控制台
+ */
+async function openDevtools() {
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+      invoke('open_devtools');
+    }
   });
 }
 
@@ -33,5 +47,6 @@ export async function setupTauri() {
 
     // 全部禁用右键菜单
     disableRightClickMenu();
+    openDevtools();
   }
 }

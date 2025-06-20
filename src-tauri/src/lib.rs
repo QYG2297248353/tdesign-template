@@ -1,5 +1,7 @@
+use super::CmdResult;
 use tauri::Manager;
 
+// 初始化
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -44,7 +46,7 @@ pub fn run() {
 /// 打开/关闭开发者工具
 #[tauri::command]
 pub fn open_devtools(app_handle: tauri::AppHandle) {
-    if let Some(window) = app_handle.get_webview_window("main") {
+    if let Some(window) = app_handle.get_webview_window("tdesign-template") {
         if !window.is_devtools_open() {
             window.open_devtools();
         } else {
