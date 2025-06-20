@@ -71,7 +71,7 @@ export async function flushTray() {
 
 export async function setupTray() {
   const isInitialized = await getStoreValue<boolean>(MAIN_WINDOW_INIT);
-  console.log('[Tauri][主窗口菜单] 初始化', isInitialized);
+  console.log('[Tauri][系统托盘] 初始化', isInitialized);
   if (isInitialized) return;
 
   const mainWebviewWindow = await getWindow(MAIN_WINDOW_ID);

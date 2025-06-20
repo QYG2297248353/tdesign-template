@@ -4,7 +4,7 @@ import { getWebviewWindow } from './operation';
 
 export async function setupWebview() {
   const isInitialized = await getStoreValue<boolean>(MAIN_WINDOW_INIT);
-  console.log('[Tauri][主窗口菜单] 初始化', isInitialized);
+  console.log('[Tauri][主窗口视图] 初始化', isInitialized);
   if (isInitialized) return;
 
   const mainWebviewWindow = await getWebviewWindow(MAIN_WINDOW_ID);

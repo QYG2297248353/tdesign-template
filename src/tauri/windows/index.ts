@@ -6,7 +6,7 @@ import { closeAllWindows, exitAllWindows, getWindow } from './operation';
 
 export async function setupWindows() {
   const isInitialized = await getStoreValue<boolean>(MAIN_WINDOW_INIT);
-  console.log('[Tauri][主窗口菜单] 初始化', isInitialized);
+  console.log('[Tauri][主窗口] 初始化', isInitialized);
   if (isInitialized) return;
 
   const mainWindow = await getWindow(MAIN_WINDOW_ID);
