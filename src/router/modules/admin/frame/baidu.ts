@@ -1,5 +1,4 @@
 import Layout from '@/layouts/admin.vue';
-import Iframe from '@/layouts/components/FrameBlank.vue';
 
 export default {
   path: '/frame',
@@ -18,7 +17,7 @@ export default {
     {
       path: 'baidu',
       name: 'Baidu',
-      component: Iframe,
+      component: () => import('@/layouts/components/FrameBlank.vue'),
       meta: {
         icon: 'logo-chrome',
         frameSrc: 'https://www.baidu.com/',
