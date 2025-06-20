@@ -2,11 +2,12 @@ import router from '@/router';
 import { isTauriEnv } from '@/tauri/core';
 import { createYesNoDialog } from '@/tauri/plugin/dialog';
 import { openLink } from '@/tauri/plugin/shell';
+import { openWindow } from '@/utils/link';
 
 const whitelist = ['lifebus.top', 'lifebus.fun'];
 
 /**
- * 拦截 a 标签事件
+ * 监听 a 标签事件
  */
 function interceptWindowOpen() {
   console.log('[Tauri][外链拦截] 初始化');
@@ -56,9 +57,13 @@ function interceptWindowOpen() {
           name: 'Jump',
           query: { url: href },
         }).href;
-        window.open(jumpUrl, '_blank');
+        openWindow(jumpUrl, {
+          target: '_blank',
+        });
       } else {
-        window.open(href, '_blank');
+        openWindow(href, {
+          target: '_blank',
+        });
       }
     },
     // capture 阶段拦截，确保拿到最原始的事件

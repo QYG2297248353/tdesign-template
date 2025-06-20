@@ -22,6 +22,7 @@
 
           <!-- 全屏 -->
           <t-tooltip
+            v-if="!isTauri()"
             placement="bottom"
             :content="isFullscreen ? t('layout.header.exitFullscreen') : t('layout.header.fullscreen')"
           >
@@ -95,7 +96,9 @@ import { langList, t } from '@/locales';
 import { useLocale } from '@/locales/useLocale';
 import { getActive } from '@/router';
 import { useSettingStore, useUserStore } from '@/store';
+import { isTauriEnv } from '@/tauri/core';
 import type { MenuRoute, ModeType } from '@/types/interface';
+import { triggerLink } from '@/utils/link';
 
 import MenuContent from './MenuContent.vue';
 import Search from './Search.vue';
@@ -135,6 +138,10 @@ const router = useRouter();
 const settingStore = useSettingStore();
 const user = useUserStore();
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
+
+const isTauri = () => {
+  return isTauriEnv();
+};
 
 const active = computed(() => getActive());
 
@@ -177,7 +184,7 @@ const handleLogout = () => {
 };
 
 const navToHelper = () => {
-  window.open('https://blog.lifebus.top');
+  triggerLink('https://blog.lifebus.top');
 };
 </script>
 <style lang="less" scoped>

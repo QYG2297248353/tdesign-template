@@ -183,8 +183,9 @@ const handleCloseDrawer = () => {
   });
 };
 
+const images = import.meta.glob('@/assets/system/layout-*.png', { eager: true, import: 'default' });
 const getThumbnailUrl = (name: string): string => {
-  return `https://tdesign.gtimg.com/tdesign-pro/setting/${name}.png`;
+  return images[`/src/assets/system/layout-${name}.png`] as string;
 };
 
 watchEffect(() => {

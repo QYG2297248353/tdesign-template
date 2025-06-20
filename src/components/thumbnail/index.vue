@@ -19,6 +19,7 @@ const className = computed(() => {
       'thumbnail-circle': type === 'circle',
       'thumbnail-layout': type === 'layout',
     },
+    'no-spoiler',
   ];
 });
 </script>
