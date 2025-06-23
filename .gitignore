@@ -41,11 +41,5 @@ pnpm-lock.yaml
 # Tauri
 src-tauri/2
 src-tauri/target
-src-tauri/binaries/ammds-x86_64-pc-windows-msvc.exe
-src-tauri/db/ammds.mv.db
-src-tauri/db/ammds.trace.db
-src-tauri/data/ffmpeg/ffmpeg-amd64.exe
-src-tauri/data/ffmpeg/ffprobe-amd64.exe
-src-tauri/data/ffmpeg/phash/videohashes.exe
-src-tauri/data/logs/AMMDS-error.log
-src-tauri/data/logs/AMMDS.log
+src-tauri/db
+src-tauri/data

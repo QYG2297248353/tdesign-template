@@ -1,4 +1,4 @@
-use super::CmdResult;
+mod commands;
 use tauri::Manager;
 
 // 初始化
@@ -29,6 +29,7 @@ pub fn run() {
                 let _ = window.set_focus();
             }
         }))
+        .invoke_handler(tauri::generate_handler![commands::open_devtools])
         .setup(|app| {
             if cfg!(debug_assertions) {
                 app.handle().plugin(
@@ -41,16 +42,4 @@ pub fn run() {
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
-}
-
-/// 打开/关闭开发者工具
-#[tauri::command]
-pub fn open_devtools(app_handle: tauri::AppHandle) {
-    if let Some(window) = app_handle.get_webview_window("tdesign-template") {
-        if !window.is_devtools_open() {
-            window.open_devtools();
-        } else {
-            window.close_devtools();
-        }
-    }
 }

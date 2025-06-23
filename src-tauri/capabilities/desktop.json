@@ -54,7 +54,7 @@
       "allow": [
         {
           "cmd": "",
-          "name": "binaries/ammds",
+          "name": "binaries/LocalSend",
           "sidecar": true
         }
       ]

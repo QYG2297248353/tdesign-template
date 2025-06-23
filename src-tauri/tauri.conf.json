@@ -33,7 +33,7 @@
     "active": true,
     "targets": "all",
     "externalBin": [
-      "binaries/ammds"
+      "binaries/LocalSend"
     ],
     "icon": [
       "icons/32x32.png",

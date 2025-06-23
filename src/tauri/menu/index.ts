@@ -54,7 +54,7 @@ export async function flushMenu() {
             id: 'runBack',
             text: '启动后台服务',
             action: async () => {
-              await runCommand('binaries/ammds');
+              await runCommand('binaries/LocalSend');
             },
           },
           {
