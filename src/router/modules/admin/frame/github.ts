@@ -1,9 +1,7 @@
-import Iframe from '@/layouts/components/FrameBlank.vue';
-
 export default {
   path: '/frame/tdesign-template',
   name: 'TDesignTemplate',
-  component: Iframe,
+  component: () => import('@/layouts/components/FrameBlank.vue'),
   meta: {
     icon: 'logo-github',
     frameSrc: 'https://github.com/QYG2297248353/tdesign-template',

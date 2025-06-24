@@ -1,3 +1,4 @@
+<!-- 缩略图 -->
 <template>
   <img :class="className" :src="url" />
 </template>
@@ -19,6 +20,7 @@ const className = computed(() => {
       'thumbnail-circle': type === 'circle',
       'thumbnail-layout': type === 'layout',
     },
+    'no-spoiler',
   ];
 });
 </script>

@@ -1,9 +1,7 @@
-import Iframe from '@/layouts/components/FrameBlank.vue';
-
 export default {
   path: '/frame/blog',
   name: 'Blog',
-  component: Iframe,
+  component: () => import('@/layouts/components/FrameBlank.vue'),
   meta: {
     icon: 'system-interface',
     frameSrc: 'https://blog.lifebus.top',

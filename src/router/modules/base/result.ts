@@ -1,10 +1,8 @@
-import Layout from '@/layouts/index.vue';
-
 export default [
   {
     path: '/',
     name: 'Result',
-    component: Layout,
+    component: () => import('@/layouts/index.vue'),
     children: [
       {
         path: 'success',

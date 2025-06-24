@@ -6,6 +6,7 @@ import { createApp } from 'vue';
 
 import App from './App.vue';
 import directive from './directive';
+import interceptor from './interceptor';
 import i18n from './locales';
 import router from './router';
 import { store } from './store';
@@ -17,5 +18,6 @@ app.use(store);
 app.use(router);
 app.use(i18n);
 app.use(directive);
+app.use(interceptor);
 
 app.mount('#app');

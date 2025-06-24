@@ -29,7 +29,7 @@
         </t-list>
 
         <div v-else class="empty-list">
-          <img src="https://tdesign.gtimg.com/pro-template/personal/nothing.png" alt="空" />
+          <img src="@/assets/system/empty-nothing.png" class="no-spoiler" alt="空" />
           <p>{{ t('layout.notice.empty') }}</p>
         </div>
         <div v-if="unreadMsg.length > 0" class="header-msg-bottom">

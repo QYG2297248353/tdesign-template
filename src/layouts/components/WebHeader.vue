@@ -96,6 +96,7 @@ import { useLocale } from '@/locales/useLocale';
 import { getActive } from '@/router';
 import { useSettingStore, useUserStore } from '@/store';
 import type { MenuRoute, ModeType } from '@/types/interface';
+import { triggerLink } from '@/utils/link';
 
 import MenuContent from './MenuContent.vue';
 import Search from './Search.vue';
@@ -177,7 +178,7 @@ const handleLogout = () => {
 };
 
 const navToHelper = () => {
-  window.open('https://blog.lifebus.top');
+  triggerLink('https://blog.lifebus.top');
 };
 </script>
 <style lang="less" scoped>
