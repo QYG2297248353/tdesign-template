@@ -12,3 +12,17 @@ _site
 temp*
 static/
 !.prettierrc.js
+
+# lock文件 请根据自身项目或团队需求选择具体的包管理工具 并移除具体的ignore的lock文件
+yarn.lock
+pnpm-lock.yaml
+
+# 编辑器
+.vscode/
+.idea/
+
+# Tauri
+src-tauri/2
+src-tauri/target
+src-tauri/db
+src-tauri/data

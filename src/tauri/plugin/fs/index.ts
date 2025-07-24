@@ -1,4 +1,14 @@
-import { dirname } from '@tauri-apps/api/path';
+import {
+  appDataDir,
+  audioDir,
+  desktopDir,
+  dirname,
+  documentDir,
+  downloadDir,
+  pictureDir,
+  resolve,
+  videoDir,
+} from '@tauri-apps/api/path';
 import {
   exists,
   ExistsOptions,
@@ -47,5 +57,86 @@ export const readFile = async (path: string, options?: ReadFileOptions): Promise
  */
 export const deleteFile = async (path: string, options?: RemoveOptions): Promise<void> => {
   const result = await remove(path, options);
+  return result;
+};
+
+/**
+ * 应用路径 - 应用数据目录
+ *
+ * @returns 应用数据目录路径
+ */
+export const getAppDataDir = async (): Promise<string> => {
+  const result = await appDataDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 桌面目录
+ *
+ * @returns 桌面目录路径
+ */
+export const getDesktopDir = async (): Promise<string> => {
+  const result = await desktopDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 下载目录
+ *
+ * @returns 下载目录路径
+ */
+export const getDownloadDir = async (): Promise<string> => {
+  const result = await downloadDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 文档目录
+ *
+ * @returns 文档目录路径
+ */
+export const getDocumentDir = async (): Promise<string> => {
+  const result = await documentDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 图片目录
+ *
+ * @returns 图片目录路径
+ */
+export const getPictureDir = async (): Promise<string> => {
+  const result = await pictureDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 视频目录
+ *
+ * @returns 视频目录路径
+ */
+export const getVideoDir = async (): Promise<string> => {
+  const result = await videoDir();
+  return result;
+};
+
+/**
+ * 公共路径 - 音乐目录
+ *
+ * @returns 音乐目录路径
+ */
+export const getAudioDir = async (): Promise<string> => {
+  const result = await audioDir();
+  return result;
+};
+
+/**
+ * 路径拼接
+ *
+ * @param paths 路径
+ * @returns 拼接后的路径
+ */
+export const resolvePath = async (...paths: string[]): Promise<string> => {
+  const result = await resolve(...paths);
   return result;
 };

@@ -3,8 +3,18 @@ import { Menu } from '@tauri-apps/api/menu';
 
 import { MAIN_WINDOW_ID, MAIN_WINDOW_INIT } from '../constant';
 import { createInfoDialog } from '../plugin/dialog';
+import {
+  getAppDataDir,
+  getAudioDir,
+  getDesktopDir,
+  getDocumentDir,
+  getDownloadDir,
+  getPictureDir,
+  getVideoDir,
+  resolvePath,
+} from '../plugin/fs';
 import { sendDesktopNotification } from '../plugin/notification';
-import { startCommand, stopCommand } from '../plugin/shell';
+import { startCommandWithEnvs, stopCommand } from '../plugin/shell';
 import { getStoreValue } from '../plugin/store';
 import { createWebviewWindow } from '../webview/operation';
 import { closeAllWindows, getWindow } from '../windows/operation';
@@ -54,7 +64,11 @@ export async function flushMenu() {
             id: 'runBack',
             text: '启动后台服务',
             action: async () => {
-              await startCommand('ammds', 'binaries/ammds');
+              const appDataDir = await getAppDataDir();
+              const logPath = await resolvePath(appDataDir, 'logs');
+              await startCommandWithEnvs('ammds', 'binaries/ammds', {
+                AMMDS_LOG_PATH: logPath,
+              });
             },
           },
           {
@@ -62,6 +76,26 @@ export async function flushMenu() {
             text: '停止后台服务',
             action: async () => {
               await stopCommand('ammds');
+            },
+          },
+          {
+            id: 'getDir',
+            text: '获取目录',
+            action: async () => {
+              const appDataDir = await getAppDataDir();
+              console.log('📁 应用数据目录', appDataDir);
+              const desktopDir = await getDesktopDir();
+              console.log('📁 桌面目录', desktopDir);
+              const downloadDir = await getDownloadDir();
+              console.log('📁 下载目录', downloadDir);
+              const documentDir = await getDocumentDir();
+              console.log('📁 文档目录', documentDir);
+              const pictureDir = await getPictureDir();
+              console.log('📁 图片目录', pictureDir);
+              const videoDir = await getVideoDir();
+              console.log('📁 视频目录', videoDir);
+              const audioDir = await getAudioDir();
+              console.log('📁 音乐目录', audioDir);
             },
           },
           {
