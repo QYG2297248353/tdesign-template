@@ -4,7 +4,7 @@ import { Menu } from '@tauri-apps/api/menu';
 import { MAIN_WINDOW_ID, MAIN_WINDOW_INIT } from '../constant';
 import { createInfoDialog } from '../plugin/dialog';
 import { sendDesktopNotification } from '../plugin/notification';
-import { runCommand } from '../plugin/shell';
+import { startCommand, stopCommand } from '../plugin/shell';
 import { getStoreValue } from '../plugin/store';
 import { createWebviewWindow } from '../webview/operation';
 import { closeAllWindows, getWindow } from '../windows/operation';
@@ -54,7 +54,14 @@ export async function flushMenu() {
             id: 'runBack',
             text: '启动后台服务',
             action: async () => {
-              await runCommand('binaries/LocalSend');
+              await startCommand('ammds', 'binaries/ammds');
+            },
+          },
+          {
+            id: 'stopBack',
+            text: '停止后台服务',
+            action: async () => {
+              await stopCommand('ammds');
             },
           },
           {

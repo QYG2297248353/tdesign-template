@@ -28,6 +28,15 @@ export async function getStoreValue<T>(key: string): Promise<T | undefined> {
 }
 
 /**
+ * 获取指定前缀的所有 key
+ */
+export async function getStoreKeys(prefix: string): Promise<string[]> {
+  const store = await getStore();
+  const keys = await store.keys();
+  return keys.filter((key) => key.startsWith(prefix));
+}
+
+/**
  * 保存存储
  */
 export async function saveStore() {

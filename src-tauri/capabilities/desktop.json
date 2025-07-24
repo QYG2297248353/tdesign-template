@@ -53,8 +53,18 @@
       "identifier": "shell:allow-execute",
       "allow": [
         {
+          "name": "binaries/ammds",
           "cmd": "",
-          "name": "binaries/LocalSend",
+          "sidecar": true
+        }
+      ]
+    },
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "binaries/ammds",
+          "cmd": "",
           "sidecar": true
         }
       ]

@@ -13,6 +13,8 @@ export const APP_COPYRIGHT = 'Copyright © 2025 新疆萌森软件开发工作�
 export const MAIN_WINDOW_ID = 'tdesign-template';
 export const MAIN_WINDOW_TRAY_ID = 'tdesign-template-tray';
 export const MAIN_WINDOW_INIT = 'tdesign-template-initialized';
+// 程序启动前缀
+export const APP_LAUNCH_PREFIX = 'run_launch_';
 // 程序信息
 export const LAUNCH_INFO_PATH = 'run/launch-info.json';
 // 托盘功能
